@@ -1,0 +1,150 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+vector<int> add(vector<int>v1,vector<int>v2)
+{
+	reverse(v1.begin(),v1.end());
+	reverse(v2.begin(),v2.end());
+	ll len=min(v1.size(),v2.size());
+	vector<int>ans;
+	ll carry=0;
+	for(int i=0;i<len;i++)
+	{
+		int val=v1[i]+v2[i]+carry;
+		carry=(val/10);
+		ans.push_back(val%10);
+	}
+	if(v1.size()>len)
+	{
+		for(int i=len;i<v1.size();i++)
+		{
+			int val=v1[i]+carry;
+			carry=(val/10);
+			ans.push_back(val%10);
+		}
+	}
+	if(v2.size()>len)
+	{
+		for(int i=len;i<v2.size();i++)
+		{
+			int val=v2[i]+carry;
+			carry=(val/10);
+			ans.push_back(val%10);
+		}
+	}
+	while(carry)
+	{
+		ans.push_back(carry%10);
+		carry=carry/10;
+	}
+	return ans;
+}
+vector<int> divby(vector<int>v)
+{
+	vector<int>ans;
+	ll rem=0;
+	for(int i=0;i<v.size();i++)
+	{
+		if(rem)
+		{
+			rem=rem*10+v[i];
+			ans.push_ back(rem/2);
+			rem=rem%2;
+		}
+		else
+		{
+			if(v[i]<2)
+			{
+				rem+=v[i];
+				ans.push_back(0);
+			}
+			else
+			{
+				rem=v[i]%2;
+				ans.push_back(v[i]/2);
+			}
+		}
+
+	}
+	vector<int>res;
+	int i=0;
+	for(int i=0;i<ans.size();i++)
+	{
+		res.push_back(ans[i]);
+	}
+return res;
+}
+vector<int> sub(vector<int>x,vector<int>y)
+{
+	reverse(x.begin(),x.end());
+	reverse(y.begin(),y.end());
+	vector<int>b;
+	ll len=x.size();
+	for(int i=0;i<len;i++)
+	{
+		if(x[i]<y[i])
+		{
+			x[i+1]--;
+			b.push_back(10+x[i]-y[i]);
+		}
+		else
+		{
+			b.push_back(x[i]-y[i]);
+		}
+	if(x.size()	>len)
+	{
+		for(int i=len;i<x.size();i++)
+		{
+			if(x[i]<0)
+			{
+			x[i+1]--;
+			b.push_back(10*x[i]);
+		}
+		else
+		{
+			ans.push_back(x[i]);
+		}
+		}
+	}
+	reverse(b.begin(),b.end());
+	vector<int>res;
+	int i=0;
+	for(int i=0;i<b.size();i++)
+	{
+		res.push_back(b[i]);
+	}
+return res;
+}
+int main()
+{
+	ll t;
+	cin>>t;
+	while(t--)
+	{
+		string s,d;
+		cin>>a>>b;
+		vector<int>v1;
+		vector<int>v2;
+		for(int i=0;i<a.size();i++)
+		{
+			v1.push_back(a[i]-'0');
+		}
+		for(int i=0;i<b.size();i++)
+		{
+			v2.push_back(b[i]-'0');
+		}
+		// for(int i=0;i<v1.size();i++)
+		// {
+		// 	cout<<v1[i]<<" ";
+		// }
+		// cout<<endl;
+		// for(int i=0;i<v2.size();i++)
+		// {
+		// 	cout<<v2[i]<<" ";
+		// }
+		vector<int>ans=add(v1,v2);
+		reverse(ans.begin(),ans.end());
+		vector<int>div=divby(ans);
+		vector<int>s=sub(ans,div);
+	}
+}
