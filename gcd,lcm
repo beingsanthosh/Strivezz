@@ -1,3 +1,4 @@
+//log(N)
 #include<bits/stdc++.h>
 using namespace std;
 void multiply(vector<int>&ans,int n)
