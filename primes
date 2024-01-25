@@ -1,0 +1,121 @@
+#include<bits/stdc++.h>
+using namespace std;
+int n=100000;
+int sieve[1000001];
+void createsieve()
+{
+	for(int i=1;i<=n;i++)
+	{
+		sieve[i]=i;
+	}
+	for(int i=2;i*i<=n;i++)
+	{
+		if(sieve[i]==i)
+		{
+			for(int j=i*i;j<=n;j+=i)
+			{
+				if(sieve[j]==j)
+				{
+					sieve[j]=i;
+				}
+			}
+		}
+	}
+}
+int main()
+{
+	//BASIC IMPLEMENTATION
+	// for(int i=1;i<=n;i++)
+	// {
+	// 	if(n%i)
+	// 	{
+	// 		c++;
+	// 	}
+	// }
+	// if(c==2)
+	// {
+	// 	cout<<"PRIME";
+	// }
+	// else
+	// {
+	// 	cout<<"NOT";
+	// }
+	//===============================
+	//SQRT VERSION
+	// for(int i=1;i*i<=(n);i++)
+	// {
+	// 	if(n%i==0)
+	// 	{
+	// 		c++;
+	// 		if((n/i)!=i)
+	// 		{
+	// 			c++;
+	// 		}
+	// 	}
+	// }
+	//==================================
+	//sieve
+// 	int n=1000000;
+// bool sieve[10000001];
+// // sieve[0]=false;
+// // sieve[1]=false;
+// void createsieve()
+// {
+// 	for(int i=2;i<=n;i++)
+// 	{
+// 		sieve[i]=true;
+// 	}
+// 	for(int i=2;i*i<=n;i++)
+// 	{
+// 		if(sieve[i]==true)
+// 		{
+// 			for(int j=i*i;j<=n;j+=i)
+// 			{
+// 				sieve[j]=false;
+// 			}
+// 		}
+// 	}
+// }
+// 	createsieve();
+// 	int k=1;
+// 	if(sieve[k]==true)
+// 	{
+// 		cout<<"PRIME";
+// 	}
+// 	else
+// 	{
+// 		cout<<"NOT prime";
+// 	}
+	//============================================
+	//Prime facterization
+	// int n=24;
+	// for(int i=2;i*i<=n;i++)
+	// {
+	// 	while(n%i==0)
+	// 	{
+	// 		cout<<i;
+	// 		n=n/i;
+	// 	}
+	// }
+	// if(n>1)
+	// {
+	// 	cout<<n;
+	// }
+	//=========================================
+	//Prime factorization using sieve method
+	// createsieve();
+	// int t;
+	// cin>>t;
+	// while(t--)
+	// {
+	// 	int n;
+	// 	cin>>n;
+	// 	while(n!=0)
+	// 	{
+	// 		cout<<sieve[n]<<" ";
+	// 		n=n/sieve[n];
+	// 	}
+
+	// }
+
+}
