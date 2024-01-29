@@ -1,0 +1,143 @@
+//Bubble sort::push large to last
+#include<bits/stdc++.h>
+using namespace std;
+void Bubblesort(vector<int>arr,int n)
+{
+	for(int i=n-1;i>0;i--)
+	{
+		for(int j=0;j<i;j++)
+		{
+			if(arr[j]>arr[j+1])
+			{
+				swap(arr[j],arr[j+1]);
+			}
+		}
+	}
+	for(int i=0;i<n;i++)
+	{
+		cout<<arr[i]<<" ";
+	}
+}
+void Selectionsort(vector<int>arr,int n)
+{
+	for(int i=0;i<n;i++)
+	{
+		int maxx=i;
+		for(int j=i+1;j<n;j++)
+		{
+			if(arr[j]<arr[i])
+			{
+				maxx=j;
+			}
+		}
+		swap(arr[i],arr[maxx]);
+
+	}
+	for(int i=0;i<n;i++)
+	{
+		cout<<arr[i]<<" ";
+	}
+}
+void Insertionsort(vector<int>arr,int n)
+{
+	for(int i=0;i<n;i++)
+	{
+		int j=i;
+		while(j>0 and arr[j]<arr[j-1])
+		{
+			swap(arr[j],arr[j-1]);
+			j--;
+		}
+	}
+	for(int i=0;i<n;i++)
+	{
+		cout<<arr[i]<<" ";
+	}
+}
+void merge(vector<int> &arr,int l,int m,int r)
+{
+	vector<int>vet;
+	int i=l,j=m+1;
+	while(i<=m and j<=r)
+	{
+		if(arr[i]<=arr[j])
+		{
+			vet.push_back(arr[i]);
+			i++;
+		}
+		else
+		{
+			vet.push_back(arr[j]);
+			j++;
+		}
+	}
+	while(i<=m)
+	{
+		vet.push_back(arr[i]);
+		i++;
+	}
+	while(j<=r)
+	{
+		vet.push_back(arr[i]);
+		i++;
+	}
+	for(int i=l;i<=r;i++)
+	{
+		arr[i]=vet[i-l];
+	}
+}
+void Mergesort(vector<int> &arr,int l,int r)
+{
+	if(l==r) return;
+	int m=(l+r)/2;
+	Mergesort(arr,l,m);
+	Mergesort(arr,m+1,r);
+	merge(arr,l,m,r);
+}
+int fun(vector<int>arr,int low,int high)
+{
+	int pi=arr[low];
+	int i=low,j=high;
+	while(i<j)
+	{
+	while(arr[i]<=pi and i<=high)
+	{
+		i++;
+	}
+	while(arr[j]>pi and j<=low+1)
+	{
+		j--;
+	}
+	if(i<j) swap(arr[i],arr[j]);
+}
+swap(arr[low],arr[j]);
+return j;
+}
+void quicksort(vector<int> arr,int low,int high)
+{
+	if(low<high)
+	{
+		int p=fun(arr,low,high);
+		quicksort(arr,low,p-1);
+		quicksort(arr,p+1,high);
+	}
+}
+int main()
+{
+	int n;
+	cin>>n;
+	vector<int>arr(n);
+	for(int i=0;i<n;i++)
+	{
+		cin>>arr[i];
+	}
+	// Bubblesort(arr,n);
+	cout<<endl;
+	// Selectionsort(arr,n);
+	cout<<endl;
+	// Insertionsort(arr,n);
+	cout<<endl;
+	// Mergesort(arr,0,n-1);
+	quicksort(arr,0,n-1);
+	
+}
